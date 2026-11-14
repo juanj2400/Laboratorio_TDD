@@ -103,6 +103,23 @@ describe('Carrito de compras', () => {
                 test('un carrito vacío tiene total 0', () => {
                   assert.equal(carrito.total(), 0);
                 });
+                describe('Reto D: cupones sin importar mayúsculas', () => {
+                  test('acepta el cupón en minúsculas', () => {
+                    carrito.agregar('Teclado', 200000, 1);
+                    carrito.aplicarCupon('desc10');
+                    assert.equal(carrito.descuento(), 20000);
+                  });
+
+                  test('acepta el cupón con espacios alrededor', () => {
+                    carrito.agregar('Teclado', 200000, 1);
+                    carrito.aplicarCupon('  DESC20 ');
+                    assert.equal(carrito.descuento(), 40000);
+                  });
+
+                  test('sigue rechazando un cupón inexistente aunque tenga espacios', () => {
+                    assert.throws(() => carrito.aplicarCupon(' gratis '), /no es válido/);
+                  });
+                });
               });
             });
           });

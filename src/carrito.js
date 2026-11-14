@@ -42,10 +42,11 @@ export class Carrito {
         return this.productos.reduce((suma, p) => suma + p.precio * p.cantidad, 0);
     }
     aplicarCupon(codigo) {
-        if (!(codigo in CUPONES)) {
+        const clave = typeof codigo === 'string' ? codigo.trim().toUpperCase() : codigo;
+        if (!(clave in CUPONES)) {
             throw new Error(`El cupón "${codigo}" no es válido`);
         }
-        this.cupon = codigo;
+        this.cupon = clave;
     }
 
     descuento() {
