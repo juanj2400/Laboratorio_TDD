@@ -8,6 +8,16 @@ describe('Carrito de compras', () => {
   beforeEach(() => {
     carrito = new Carrito();
   });
+  describe('Iteración 1: carrito vacío', () => {
+    test('un carrito nuevo no tiene ítems', () => {
+      assert.equal(carrito.cantidadDeItems(), 0);
+    });
 
+    test('un carrito nuevo tiene subtotal 0', () => {
+      assert.equal(carrito.subtotal(), 0);
+    });
+  });
   // Escribe aquí tus pruebas, una iteración a la vez.
 });
+
+
